@@ -7,12 +7,13 @@ beige
 
 */
 
+@import url('satoshi.css');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Satoshi-medium;
 }
 
 body {
@@ -786,12 +787,18 @@ footer>p {
     nav>ul {
         padding: 0;
         width: 100%;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     li>a {
         padding: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 1rem;
+    }
+
+    span{
+        font-size: 1rem;
+        padding: 0.1rem;
     }
 
     header>a {

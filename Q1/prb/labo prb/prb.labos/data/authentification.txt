@@ -1,0 +1,8 @@
+thor=marteau83
+iron man=tony39
+captain america=shield11
+loki=odin85
+black panther=wakanda66
+thanos=titan55
+black widow=ivan52
+hulk=gamma5

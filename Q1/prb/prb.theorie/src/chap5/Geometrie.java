@@ -1,0 +1,46 @@
+package chap5;
+
+import io.Console;
+import chap5.formes.Cercle;
+import chap5.formes.Rectangle;
+
+/**
+ * Ce programme premet de calculer les périmètres et aires
+ * d'un cercle et d'un rectangle.
+ */
+ 
+ public class Geometrie{
+
+
+     public static void main(String[] args) {
+         
+         // Variables
+         double rayon;
+         double hauteur, largeur;
+         double perimetre, aire;
+         
+         // Acquisitions
+         rayon = Console.lireDouble("Rayon ? ");
+         largeur = Console.lireDouble("Largeur ? ");
+         hauteur = Console.lireDouble("Hauteur ? ");
+         
+         // Traitement
+         // 1) Calculs pour le cercle
+         perimetre = Cercle.perimetre(rayon);
+         aire = Cercle.aire(rayon);
+         
+         System.out.printf("\n");
+         System.out.printf("Le périmètre du cercle est %f. \n \n", perimetre);
+         System.out.printf("L'aire du cercle est %f. \n \n", aire);
+         
+        // 2) Calculs pour le rectangle
+        
+        
+         perimetre = Rectangle.perimetre(largeur, hauteur);
+         aire = Rectangle.aire(largeur, hauteur);
+         System.out.printf("Le périmètre du rectangle est %.2f. \n \n", perimetre);
+         System.out.printf("L'aire du rectangle est %.2f.\n ", aire);
+         
+     }
+     
+ }

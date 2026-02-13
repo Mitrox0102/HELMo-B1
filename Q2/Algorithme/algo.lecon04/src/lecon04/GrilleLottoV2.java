@@ -21,6 +21,15 @@ public class GrilleLottoV2 {
 	}
 	
 	public void tirageGrille() {
+		
+		/*
+		 * INIT = 1 op
+		 * GARDIEN = 3 ops
+		 * CORPS : 
+		 * FIN : 0 op
+		 */
+		
+		
 		this.nbreTiragesEffectues = 0;
 		for(int i = 0; i < tailleGrille; i++) {
 			tirageBoule(); 
@@ -42,6 +51,14 @@ public class GrilleLottoV2 {
 	}
 
 	private int tirageBoule() { // utilise numéro_unique()
+		
+		/*
+		 * INIT : 1 op
+		 * CORPS : 6 ops
+		 * GARDIEN : 
+		 * FIN : 7 ops
+		 */
+		
 		int n;
 		do {
 			n = 1 + ((int)(Math.random() * nbBoules)); // n dans [1,42] 

@@ -35,8 +35,25 @@ public class GrilleLotto {
 				return false;
 			}
 
+		/*
+		 * INIT : init + decl = 2 ops
+		 * GARDIEN : 3 ops (2 lectures + '<')
+		 * CORPS : cond (4) + 2 (branche else) -> 6 ops
+		 * FIN : 1 op
+		 * nb_tours : (tte les boules sont != à numéro) : nbreTiragesEffectues
+		 * 2 + 1 + 3 +  nbreTiragesEffectues * (6 + 3) =
+		 * 6 + 9 * nbreTiragesEffectues => O(nbreTiragesEffectues)
+		 */
+		
+		
 		return true;
 	}
+	
+	/**
+	 * Complexité saptiale : 
+	 * Var ? n, nbBoules, nb
+	 * @return
+	 */
 	
 	private int tirageBoule() { // utilise numéro_unique()
 		int n;  // 1 op
@@ -49,9 +66,15 @@ public class GrilleLotto {
 		} while (!numéroUnique(n)) ;
 		/*
 		 * INIT : 1 op
-		 * GARDIEN : 2 (! + lecture n) + nb opérations de numeroUnique
+		 * GARDIEN : 2 (! + lecture n) + nbreTiragesEffectues
 		 * CORPS : 6 op
-		 * FIN : 
+		 * FIN : 4 + 2 + 1 = 7 ops
+		 * nb_tours : on supposera que nbBoules << tailleGrille de sorte que les
+		 * collisions pue fréquentes. Par conséquents, numeroUnique renvoie vrai et 
+		 * la boucle ne fait qu'un tour
+		 * 
+		 * Concl : 1 + 2 + nbtirageEffectués + 7 + 1 * (6 + nbTirageEffectues)
+		 * = 10 + nbTirageEffectués + 6 * nbTirageEffectués = 10 + 7 * nbTiragesEffectués -> O(nbTirageEffectués)
 		 */
 		
 		

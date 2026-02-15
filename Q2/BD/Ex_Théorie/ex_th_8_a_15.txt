@@ -1,0 +1,93 @@
+-- Exercice 8
+
+select p.nom, p.prenom
+from acteur a
+join personne p on a.numpersonne = p.numpersonne
+
+minus
+
+select p.nom, p.prenom
+from realisateur r
+join personne p on r.numpersonne = p.numpersonne
+
+
+-- Exercice 9
+
+select f.titre
+from film f
+where upper(f.titre) like '%IRD%'
+
+union
+
+select f.titre
+from film f
+join acteur a on f.numfilm = a.numfilm
+join personne p on p.numpersonne = a.numpersonne
+where lower(p.nom) = 'hanks' and lower(p.prenom) = 'tom'
+
+
+-- Exercice 10
+
+select sa.nomsalle
+from salle sa
+join seance se on sa.numsalle = se.numsalle
+join film f on se.numfilm = f.numfilm
+where lower(f.titre) = 'moonlight'
+
+intersect
+
+select sa.nomsalle
+from salle sa
+join seance se on sa.numsalle = se.numsalle
+join film f on se.numfilm = f.numfilm
+where lower(f.titre) = 'birdman'
+
+
+-- Exercice 11
+
+select f.titre
+from film f
+where f.numfilm in (select se.numfilm
+                    from seance se
+                    where to_char(se.jourheure, 'hh24-mi') = '16-30')
+                    
+                    
+-- Exercice 12
+
+select f.titre,
+    case 
+        when f.duree <90 then '7€'
+        when f.duree >=90 and f.duree <=140 then '8.5€'
+        when f.duree >140 then '9€'
+        else 'Prix inconnu'
+        end as Prix
+from film f
+
+
+-- Exercice 13
+
+select f.titre
+from film f
+where f.numfilm not in ( select se.numfilm
+                         from seance se
+                         join salle sa on se.numsalle = sa.numsalle
+                         where sa.capacite <= 200)
+                    
+
+-- Exercice 14
+
+select f.titre, sum(se.nbplacesvendues) as PVendues
+from film f
+join seance se on f.numfilm = se.numfilm
+where to_char(se.jourheure, 'hh24-mi') between '18-00' and '23-59'
+group by f.titre
+having sum(se.nbplacesvendues) > 5000
+
+
+-- Exercice 15
+
+select f.titre
+from film f
+where f.duree > all ( select ff.duree
+                      from film ff
+                      where to_char(ff.datesortie, 'yyyy') = '2014')

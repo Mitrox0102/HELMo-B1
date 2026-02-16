@@ -24,6 +24,12 @@ WHERE TO_CHAR (jourHeure, 'mmyyyy') = '012017'
 GROUP BY sa.nomSalle
 
 -- Exercice 6
+SELECT f.titre, COUNT(se.jourHeure)
+FROM Film f
+LEFT OUTER JOIN Seance se ON se.numFilm = f.numFilm AND jourHeure > SYSDATE
+GROUP BY f.titre
+
+-- Exercice 7
 SELECT titre, dateSortie
 FROM Film f
 WHERE Duree > (SELECT AVG(duree)FROM Film)

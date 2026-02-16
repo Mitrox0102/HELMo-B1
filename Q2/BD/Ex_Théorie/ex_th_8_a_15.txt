@@ -47,9 +47,9 @@ where lower(f.titre) = 'birdman'
 
 select f.titre
 from film f
-where f.numfilm in (select se.numfilm
+where f.numfilm exists (select *
                     from seance se
-                    where to_char(se.jourheure, 'hh24-mi') = '16-30')
+                    where to_char(se.jourheure, 'hh24-mi') = '16-30' and f.numfilm = se.numfilm)
                     
                     
 -- Exercice 12
@@ -71,7 +71,7 @@ from film f
 where f.numfilm not in ( select se.numfilm
                          from seance se
                          join salle sa on se.numsalle = sa.numsalle
-                         where sa.capacite <= 200)
+                         where sa.capacite < 200)
                     
 
 -- Exercice 14
@@ -79,7 +79,7 @@ where f.numfilm not in ( select se.numfilm
 select f.titre, sum(se.nbplacesvendues) as PVendues
 from film f
 join seance se on f.numfilm = se.numfilm
-where to_char(se.jourheure, 'hh24-mi') between '18-00' and '23-59'
+where extract(hour from se.jourHeure) between 18 and 23
 group by f.titre
 having sum(se.nbplacesvendues) > 5000
 

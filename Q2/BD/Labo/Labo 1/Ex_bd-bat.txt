@@ -1,0 +1,119 @@
+-- Exercice 1
+
+select count (*) as nombrelivre
+from livre
+
+
+-- Exercice 2
+
+select count(*) as nombrelivre
+from livre
+where cote > 4
+
+
+-- Exercice 3
+
+select c.nom, count(*) as nombre
+from categorie c
+join livre l on l.numcategorie = c.numcategorie
+group by c.nom
+
+
+-- Exercice 4
+
+select a.nom, count(*) as nombre
+from auteur a
+join redaction r on a.numauteur = r.numauteur
+group by a.nom
+order by a.nom desc
+
+
+-- Exercice 5
+
+select a.nom, count(*) as nombre
+from auteur a
+join redaction r on a.numauteur = r.numauteur
+group by a.nom
+order by substr(a.nom,instr(a.nom, ' ', -1) + 1) desc
+
+
+-- Exercice 6
+
+select min(cote) as mincote, max(cote) as maxcote
+from livre
+
+
+-- Exercice 7
+
+select l.titre, count(*) as nombre
+from livre l
+join exemplaire e on l.numlivre = e.numlivre
+group by l.titre
+
+
+-- Exercice 8
+
+select l.titre, count(*) as nombre
+from livre l
+join exemplaire e on l.numlivre = e.numlivre
+where e.etat = 10
+group by l.titre
+
+
+-- Exercice 9
+
+select round(avg(dateretour - datelocation), 1) || ' jours' as dureemoyenne
+from location
+
+
+-- Exercice 10
+
+SELECT TO_CHAR(datelocation, 'yyyy-mm') AS mois, COUNT(*) AS nombre
+FROM location
+GROUP BY TO_CHAR(datelocation, 'yyyy-mm')
+ORDER BY mois ASC
+
+
+-- Exercice 11
+
+select min(sysdate - datenaissance)/365 as agemin
+from auteur
+
+
+-- Exercice 12
+
+select a.nom, count(*) as nb_livres
+from auteur a
+join redaction r on a.numauteur = r.numauteur
+group by a.nom
+having count(*) > 1
+
+
+-- Exercice 13
+
+SELECT l.titre AS titre, e.numexemplaire AS numexemplaire, COUNT(*) AS nombre
+FROM livre l
+JOIN exemplaire e ON l.numlivre = e.numlivre
+join location lo on lo.numexemplaire = e.numexemplaire and e.numlivre = lo.numlivre
+GROUP BY l.titre, e.numexemplaire
+ORDER BY nombre DESC
+
+
+-- Exercice 14
+
+SELECT l.titre AS titre, e.numexemplaire AS numexemplaire, COUNT(*) AS nombre
+FROM livre l
+JOIN exemplaire e ON l.numlivre = e.numlivre
+join location lo on lo.numexemplaire = e.numexemplaire and e.numlivre = lo.numlivre
+GROUP BY l.titre, e.numexemplaire
+HAVING count(*) > 1
+ORDER BY COUNT(*) DESC
+
+
+-- Exercice 15
+
+select to_char(datepublication, 'yyyy') as annee, count(*) as nombre
+from livre
+group by to_char(datepublication, 'yyyy')
+order by annee asc
+

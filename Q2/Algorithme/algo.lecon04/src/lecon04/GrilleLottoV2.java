@@ -55,8 +55,11 @@ public class GrilleLottoV2 {
 		/*
 		 * INIT : 1 op
 		 * CORPS : 6 ops
-		 * GARDIEN : 
-		 * FIN : 7 ops
+		 * GARDIEN : 1
+		 * FIN : 4 ops
+		 * NB_TOURS : Hyopthese : nbBoules >> tailleGrille => peu de collisions et ne boucle pas.
+		 * 						  attention, si l'hypothese est fausse, il faut faire un calcul de probabilité.
+		 * 						  (Calcul similaire à celui détaillé dans GrilleLotto).
 		 */
 		
 		int n;
